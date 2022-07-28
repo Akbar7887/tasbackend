@@ -9,7 +9,7 @@ import tas.uz.tasbackend.service.fileupload.FileStorageProperties;
 @EnableConfigurationProperties({
 		FileStorageProperties.class
 })
-public class TasbackendApplication {
+public class TasbackendApplication extends Exception {
 
 	public static void main(String[] args) {
 		SpringApplication.run(TasbackendApplication.class, args);
