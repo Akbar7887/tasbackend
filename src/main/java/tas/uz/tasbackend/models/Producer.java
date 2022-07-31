@@ -21,6 +21,10 @@ public class Producer {
     @JsonManagedReference
     private Set<Model> modelSet;
 
+    private String country;
+
+    private String countryuz;
+
     @Enumerated(EnumType.STRING)
     private ACTIVE active = ACTIVE.ACTIVE;
 
@@ -42,12 +46,30 @@ public class Producer {
     public Producer() {
     }
 
-    public Producer(Long id, String name, String imagepath, Set<Model> modelSet, ACTIVE active) {
+    public Producer(Long id, String name, String imagepath, Set<Model> modelSet, String country, String countryuz, ACTIVE active) {
         this.id = id;
         this.name = name;
         this.imagepath = imagepath;
         this.modelSet = modelSet;
+        this.country = country;
+        this.countryuz = countryuz;
         this.active = active;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getCountryuz() {
+        return countryuz;
+    }
+
+    public void setCountryuz(String countryuz) {
+        this.countryuz = countryuz;
     }
 
     public Long getId() {
