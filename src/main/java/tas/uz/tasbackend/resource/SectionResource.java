@@ -23,6 +23,7 @@ import static org.springframework.http.MediaType.parseMediaType;
 @RequestMapping("/api/")
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin
 public class SectionResource {
 
     final SectionService sectionService;

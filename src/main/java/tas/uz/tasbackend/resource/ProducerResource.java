@@ -21,6 +21,7 @@ import static org.springframework.http.MediaType.parseMediaType;
 @RequestMapping("/api/")
 @RequiredArgsConstructor
 @RestController
+@CrossOrigin
 public class ProducerResource {
 
     final ProducerService producerService;
@@ -35,7 +36,10 @@ public class ProducerResource {
     private ResponseEntity<Producer> add(@RequestBody Producer producer){
         return ResponseEntity.ok().body(producerService.add(producer));
     }
-
+    @PostMapping("removeproducer")
+    private ResponseEntity<Producer> add(@RequestParam("id") String id){
+        return ResponseEntity.ok().body(producerService.remove(id));
+    }
     @GetMapping("download/producer/{filename:.+}")
     public ResponseEntity<?> downloadFile(@PathVariable("filename") String filename, HttpServletRequest request) {
         Resource fileResource = fileService.getFile(filename, "producers");

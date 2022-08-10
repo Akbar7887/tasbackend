@@ -3,13 +3,12 @@ package tas.uz.tasbackend.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tas.uz.tasbackend.models.Model;
+import tas.uz.tasbackend.models.ACTIVE;
 import tas.uz.tasbackend.models.Producer;
 import tas.uz.tasbackend.repository.ProducerRepo;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -20,8 +19,6 @@ public class ProducerService {
     final ProducerRepo producerRepo;
 
     public Producer add(Producer producer){
-
-
         return producerRepo.save(producer);
     }
 
@@ -33,4 +30,10 @@ public class ProducerService {
         return producerRepo.getById(id);
     }
 
+    public Producer remove(String id){
+
+        Producer producer = producerRepo.getById(Long.parseLong(id));
+        producer.setActive(ACTIVE.NOACTIVE);
+        return producerRepo.save(producer);
+    }
 }

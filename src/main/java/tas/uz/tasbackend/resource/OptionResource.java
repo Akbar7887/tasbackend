@@ -13,6 +13,7 @@ import java.util.List;
 @RequestMapping("/api/")
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin
 public class OptionResource {
 
     final OptionService optionService;
