@@ -21,7 +21,6 @@ import static org.springframework.http.MediaType.parseMediaType;
 @RequestMapping("/api/")
 @RequiredArgsConstructor
 @RestController
-@CrossOrigin
 public class ProducerResource {
 
     final ProducerService producerService;

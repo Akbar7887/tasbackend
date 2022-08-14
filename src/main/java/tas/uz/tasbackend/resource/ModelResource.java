@@ -22,7 +22,6 @@ import static org.springframework.http.MediaType.parseMediaType;
 @RequestMapping("/api/")
 @RequiredArgsConstructor
 @RestController
-@CrossOrigin
 public class ModelResource {
 
     final ModelService modelService;

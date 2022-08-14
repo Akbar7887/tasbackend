@@ -22,7 +22,6 @@ import static org.springframework.http.MediaType.parseMediaType;
 @RequestMapping("/api/")
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin
 public class NewsResource {
 
     final NewsService newsService;
