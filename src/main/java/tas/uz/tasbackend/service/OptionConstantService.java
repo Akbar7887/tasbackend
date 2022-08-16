@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tas.uz.tasbackend.models.ACTIVE;
-import tas.uz.tasbackend.models.Option;
 import tas.uz.tasbackend.models.OptionConstant;
 import tas.uz.tasbackend.repository.OptionConstantRepo;
 

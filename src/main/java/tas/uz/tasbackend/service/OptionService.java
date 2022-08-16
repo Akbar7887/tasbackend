@@ -7,10 +7,12 @@ import tas.uz.tasbackend.models.ACTIVE;
 import tas.uz.tasbackend.models.Option;
 import tas.uz.tasbackend.repository.OptionRepo;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class OptionService {
 
     @Autowired

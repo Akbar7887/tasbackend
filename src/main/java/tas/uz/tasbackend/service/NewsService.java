@@ -33,9 +33,7 @@ public class NewsService {
 
     public News remove(String id) {
         News news = newsRepo.getById(Long.parseLong(id));
-
         news.setActive(ACTIVE.NOACTIVE);
-
         return newsRepo.save(news);
     }
 }
