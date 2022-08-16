@@ -17,13 +17,17 @@ public class Option {
 
     private String optionname;
 
+    @Enumerated(EnumType.STRING)
+    private ACTIVE active = ACTIVE.ACTIVE;
+
     public Option() {
     }
 
-    public Option(Long id, OptionConstant optionConstant, String optionname) {
+    public Option(Long id, OptionConstant optionConstant, String optionname, ACTIVE active) {
         this.id = id;
         this.optionConstant = optionConstant;
         this.optionname = optionname;
+        this.active = active;
     }
 
     public Long getId() {
@@ -48,5 +52,13 @@ public class Option {
 
     public void setOptionname(String optionname) {
         this.optionname = optionname;
+    }
+
+    public ACTIVE getActive() {
+        return active;
+    }
+
+    public void setActive(ACTIVE active) {
+        this.active = active;
     }
 }

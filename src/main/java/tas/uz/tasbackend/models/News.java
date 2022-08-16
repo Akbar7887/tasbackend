@@ -24,15 +24,19 @@ public class News {
     @CreationTimestamp
     private Date date;
 
+    @Enumerated(EnumType.STRING)
+    private ACTIVE active = ACTIVE.ACTIVE;
+
     public News() {
     }
 
-    public News(Long id, String title, String description, String imagepath, Date date) {
+    public News(Long id, String title, String description, String imagepath, Date date, ACTIVE active) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.imagepath = imagepath;
         this.date = date;
+        this.active = active;
     }
 
     public Long getId() {
@@ -73,5 +77,13 @@ public class News {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public ACTIVE getActive() {
+        return active;
+    }
+
+    public void setActive(ACTIVE active) {
+        this.active = active;
     }
 }

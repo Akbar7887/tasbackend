@@ -1,5 +1,6 @@
 package tas.uz.tasbackend.conf;
 
+
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,14 +10,18 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 
+
 @Configuration
 public class CorsConfig {
+
+
     @Bean
     public FilterRegistrationBean customCorsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.addAllowedOrigin("http://195.158.30.101:8083");
+        config.addAllowedOrigin("https://admin.tascom.uz:8083");
+        config.addAllowedOrigin("https://tascom.uz");
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
         source.registerCorsConfiguration("/**", config);

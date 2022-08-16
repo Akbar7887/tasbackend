@@ -38,6 +38,11 @@ public class NewsResource {
         return ResponseEntity.ok().body(newsService.add(news));
     }
 
+    @PostMapping("removenews")
+    private ResponseEntity<News> add(@RequestParam("id") String id){
+        return ResponseEntity.ok().body(newsService.remove(id));
+    }
+
     @GetMapping("download/news/{filename:.+}")
     public ResponseEntity<?> downloadFile(@PathVariable("filename") String filename, HttpServletRequest request) {
         Resource fileResource = fileService.getFile(filename, "news");

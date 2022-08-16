@@ -16,14 +16,17 @@ public class OptionConstant {
     @Column(unique = true)
     private String nameuz;
 
+    @Enumerated(EnumType.STRING)
+    private ACTIVE active = ACTIVE.ACTIVE;
 
     public OptionConstant() {
     }
 
-    public OptionConstant(Long id, String namerus, String nameuz) {
+    public OptionConstant(Long id, String namerus, String nameuz, ACTIVE active) {
         this.id = id;
         this.namerus = namerus;
         this.nameuz = nameuz;
+        this.active = active;
     }
 
     public Long getId() {
@@ -48,5 +51,13 @@ public class OptionConstant {
 
     public void setNameuz(String nameuz) {
         this.nameuz = nameuz;
+    }
+
+    public ACTIVE getActive() {
+        return active;
+    }
+
+    public void setActive(ACTIVE active) {
+        this.active = active;
     }
 }

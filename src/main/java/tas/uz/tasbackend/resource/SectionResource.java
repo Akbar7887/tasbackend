@@ -33,7 +33,7 @@ public class SectionResource {
         return ResponseEntity.ok().body(sectionService.add(section));
     }
 
-    @CrossOrigin(origins = "http://195.158.30.101:8083")
+//    @CrossOrigin(origins = "http://admin.tascom.uz:8083")
     @GetMapping("sectionget")
     private ResponseEntity<List<Section>> get(){
         return ResponseEntity.ok().body(sectionService.get());

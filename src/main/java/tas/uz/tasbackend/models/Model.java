@@ -24,6 +24,10 @@ public class Model {
     @Column(columnDefinition = "TEXT")
     private String description;
 
+    @Column(columnDefinition = "TEXT")
+    private String descriptionuz;
+
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "producer_id", referencedColumnName = "id")
     @JsonBackReference
@@ -43,13 +47,14 @@ public class Model {
     @Enumerated(EnumType.STRING)
     private ACTIVE active = ACTIVE.ACTIVE;
 
-    public Model(Long id, String name, Double price, String producername, String imagepath, String description, Producer producer, Section section, Set<Option> optionSet, ACTIVE active) {
+    public Model(Long id, String name, Double price, String producername, String imagepath, String description, String descriptionuz, Producer producer, Section section, Set<Option> optionSet, ACTIVE active) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.producername = producername;
         this.imagepath = imagepath;
         this.description = description;
+        this.descriptionuz = descriptionuz;
         this.producer = producer;
         this.section = section;
         this.optionSet = optionSet;
@@ -137,5 +142,13 @@ public class Model {
 
     public void setProducername(String producername) {
         this.producername = producername;
+    }
+
+    public String getDescriptionuz() {
+        return descriptionuz;
+    }
+
+    public void setDescriptionuz(String descriptionuz) {
+        this.descriptionuz = descriptionuz;
     }
 }

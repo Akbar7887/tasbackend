@@ -3,6 +3,7 @@ package tas.uz.tasbackend.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tas.uz.tasbackend.models.ACTIVE;
 import tas.uz.tasbackend.models.News;
 import tas.uz.tasbackend.repository.NewsRepo;
 
@@ -26,8 +27,15 @@ public class NewsService {
         return newsRepo.save(news);
     }
 
-    public News getbyid(Long id){
+    public News getbyid(Long id) {
         return newsRepo.getById(id);
     }
 
+    public News remove(String id) {
+        News news = newsRepo.getById(Long.parseLong(id));
+
+        news.setActive(ACTIVE.NOACTIVE);
+
+        return newsRepo.save(news);
+    }
 }

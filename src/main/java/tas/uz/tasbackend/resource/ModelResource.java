@@ -34,8 +34,18 @@ public class ModelResource {
     }
 
     @PostMapping("modeladd")
+    private ResponseEntity<Model> add(@RequestBody Model model, @RequestParam("id") String id){
+        return ResponseEntity.ok().body(modelService.add(model, id));
+    }
+
+    @PostMapping("modelcreate")
     private ResponseEntity<Model> add(@RequestBody Model model){
-        return ResponseEntity.ok().body(modelService.add(model));
+        return ResponseEntity.ok().body(modelService.create(model));
+    }
+
+    @PostMapping("removemodel")
+    private ResponseEntity<Model> add(@RequestParam("id") String id){
+        return ResponseEntity.ok().body(modelService.remove(id));
     }
 
     @GetMapping("download/model/{filename:.+}")
@@ -67,7 +77,7 @@ public class ModelResource {
 
         Model model = modelService.getbyid(Long.parseLong(id));
         model.setImagepath(filename);
-        modelService.add(model);
+        modelService.create(model);
 
         return ResponseEntity.ok(fileService.storeFile(multipartFile, filename, "models"));
     }

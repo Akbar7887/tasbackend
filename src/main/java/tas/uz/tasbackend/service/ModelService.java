@@ -3,7 +3,9 @@ package tas.uz.tasbackend.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tas.uz.tasbackend.models.ACTIVE;
 import tas.uz.tasbackend.models.Model;
+import tas.uz.tasbackend.models.Producer;
 import tas.uz.tasbackend.repository.ModelRepo;
 
 import javax.transaction.Transactional;
@@ -16,21 +18,37 @@ public class ModelService {
 
     @Autowired
     final ModelRepo modelRepo;
+    final ProducerService producerService;
 
-    public Model add(Model model){
+    public Model add(Model model, String id) {
 
-        model.setProducername(model.getProducer().getName());
+
+        Producer producer = producerService.getbyid(Long.parseLong(id));
+        model.setProducername(producer.getName());
+        producer.addModel(model);
+        producerService.add(producer);
         return modelRepo.save(model);
     }
 
-    public List<Model> getall(){
+    public Model create(Model model) {
+        return modelRepo.save(model);
+    }
+    public Model remove(String id) {
+
+        Model model = modelRepo.getById(Long.parseLong(id));
+        model.setActive(ACTIVE.NOACTIVE);
+        return modelRepo.save(model);
+    }
+
+
+
+    public List<Model> getall() {
         return modelRepo.findAll();
     }
 
-    public Model getbyid(Long id){
+    public Model getbyid(Long id) {
         return modelRepo.getById(id);
     }
-
 
 
 }
