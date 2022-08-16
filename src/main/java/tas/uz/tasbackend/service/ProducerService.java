@@ -23,7 +23,7 @@ public class ProducerService {
     }
 
     public List<Producer> getall(){
-        return producerRepo.findAll();
+        return producerRepo.getAllActive(ACTIVE.ACTIVE);
     }
 
     public Producer getbyid(Long id){

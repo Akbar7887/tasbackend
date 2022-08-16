@@ -3,6 +3,7 @@ package tas.uz.tasbackend.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tas.uz.tasbackend.models.ACTIVE;
 import tas.uz.tasbackend.models.Customer;
 import tas.uz.tasbackend.models.CustomerOrder;
 import tas.uz.tasbackend.repository.CustomerRepo;
@@ -17,7 +18,7 @@ public class CustomerService {
     final CustomerRepo customerRepo;
 
     public List<Customer> getAll(){
-        return customerRepo.findAll();
+        return customerRepo.getAllActive(ACTIVE.ACTIVE);
     }
 
     public Customer add(Customer customer){

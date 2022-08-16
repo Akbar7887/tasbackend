@@ -43,7 +43,7 @@ public class ModelService {
 
 
     public List<Model> getall() {
-        return modelRepo.findAll();
+        return modelRepo.getAllModels(ACTIVE.ACTIVE);
     }
 
     public Model getbyid(Long id) {

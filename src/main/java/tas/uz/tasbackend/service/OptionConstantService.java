@@ -17,7 +17,7 @@ public class OptionConstantService {
     final OptionConstantRepo optionConstantRepo;
 
     public List<OptionConstant> getall(){
-        return optionConstantRepo.findAll();
+        return optionConstantRepo.getAllActive(ACTIVE.ACTIVE);
     }
 
     public OptionConstant add(OptionConstant optionConstant){

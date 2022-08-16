@@ -19,7 +19,7 @@ public class OptionService {
     final OptionRepo optionRepo;
 
     public List<Option> getall(){
-        return optionRepo.findAll();
+        return optionRepo.getAllActive(ACTIVE.ACTIVE);
     }
 
     public Option add(Option option){
