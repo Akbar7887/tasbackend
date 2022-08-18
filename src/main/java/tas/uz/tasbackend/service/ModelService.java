@@ -6,7 +6,9 @@ import org.springframework.stereotype.Service;
 import tas.uz.tasbackend.models.ACTIVE;
 import tas.uz.tasbackend.models.Model;
 import tas.uz.tasbackend.models.Producer;
+import tas.uz.tasbackend.models.Rate;
 import tas.uz.tasbackend.repository.ModelRepo;
+import tas.uz.tasbackend.repository.RateRepo;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -19,6 +21,7 @@ public class ModelService {
     @Autowired
     final ModelRepo modelRepo;
     final ProducerService producerService;
+    final RateRepo rateRepo;
 
     public Model add(Model model, String id) {
 
@@ -27,12 +30,24 @@ public class ModelService {
         model.setProducername(producer.getName());
         producer.addModel(model);
         producerService.add(producer);
+        Rate rate = rateRepo.getMaxDate();
+        if (rate != null && model.getPrice() != null){
+            double res = model.getPrice() * rate.getCourse();
+            model.setPriceuzs(res);
+        }
         return modelRepo.save(model);
     }
 
     public Model create(Model model) {
+        Rate rate = rateRepo.getMaxDate();
+        if (rate != null && model.getPrice() != null){
+            double res = model.getPrice() * rate.getCourse();
+            model.setPriceuzs(res);
+        }
         return modelRepo.save(model);
     }
+
+
     public Model remove(String id) {
 
         Model model = modelRepo.getById(Long.parseLong(id));

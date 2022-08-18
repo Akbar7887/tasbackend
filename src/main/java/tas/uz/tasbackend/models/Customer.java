@@ -22,6 +22,10 @@ public class Customer {
     @Column(name = "email")
     private String email;
 
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "model_id", referencedColumnName = "id")
+    private Model model;
+
     @OneToMany(mappedBy = "customer",
             fetch = FetchType.EAGER,
             cascade = CascadeType.ALL)
@@ -31,11 +35,12 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(Long id, String name, String phone, String email, Set<CustomerOrder> customerOrders) {
+    public Customer(Long id, String name, String phone, String email, Model model, Set<CustomerOrder> customerOrders) {
         this.id = id;
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.model = model;
         this.customerOrders = customerOrders;
     }
 
@@ -93,5 +98,11 @@ public class Customer {
         this.customerOrders = customerOrders;
     }
 
+    public Model getModel() {
+        return model;
+    }
 
+    public void setModel(Model model) {
+        this.model = model;
+    }
 }

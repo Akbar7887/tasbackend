@@ -1,6 +1,9 @@
 package tas.uz.tasbackend.models;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "rate")
@@ -13,10 +16,22 @@ public class Rate {
     @Enumerated(EnumType.STRING)
     private Exchange exchange = Exchange.USD;
 
+//    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "currentdate")
+//    @CreationTimestamp
+    private Date currentdate;
+
     private double course;
 
 
     public Rate() {
+    }
+
+    public Rate(Long id, Exchange exchange, Date currentdate, double course) {
+        this.id = id;
+        this.exchange = exchange;
+        this.currentdate = currentdate;
+        this.course = course;
     }
 
     public Long getId() {
@@ -32,7 +47,8 @@ public class Rate {
     }
 
     public void setExchange(Exchange exchange) {
-        this.exchange = exchange;
+
+        this.exchange = Exchange.USD;
     }
 
     public double getCourse() {
@@ -41,5 +57,13 @@ public class Rate {
 
     public void setCourse(double course) {
         this.course = course;
+    }
+
+    public Date getCurrentdate() {
+        return currentdate;
+    }
+
+    public void setCurrentdate(Date currentdate) {
+        this.currentdate = currentdate;
     }
 }

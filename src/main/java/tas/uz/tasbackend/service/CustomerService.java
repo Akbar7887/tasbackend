@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import tas.uz.tasbackend.models.ACTIVE;
 import tas.uz.tasbackend.models.Customer;
 import tas.uz.tasbackend.models.CustomerOrder;
+import tas.uz.tasbackend.models.Model;
 import tas.uz.tasbackend.repository.CustomerRepo;
 
 import java.util.List;
@@ -16,12 +17,13 @@ public class CustomerService {
 
     @Autowired
     final CustomerRepo customerRepo;
+    final ModelService modelService;
 
     public List<Customer> getAll(){
         return customerRepo.getAllActive(ACTIVE.ACTIVE);
     }
 
-    public Customer add(Customer customer){
+    public Customer add(Customer customer, String model_id){
 
         Customer findCustomer = customerRepo.findByPhone(customer.getPhone());
         if (findCustomer != null){
@@ -29,6 +31,10 @@ public class CustomerService {
                 findCustomer.addCustomerOrder(cus);
             }
             return customerRepo.save(findCustomer);
+        }
+        Model model = modelService.getbyid(Long.parseLong(model_id));
+        if(model != null){
+            customer.setModel(model);
         }
         return customerRepo.save(customer);
 

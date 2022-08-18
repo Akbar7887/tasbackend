@@ -17,6 +17,8 @@ public class Model {
 
     private Double price;
 
+    private Double priceuzs;
+
     private String producername;
 
     private String imagepath;
@@ -47,10 +49,15 @@ public class Model {
     @Enumerated(EnumType.STRING)
     private ACTIVE active = ACTIVE.ACTIVE;
 
-    public Model(Long id, String name, Double price, String producername, String imagepath, String description, String descriptionuz, Producer producer, Section section, Set<Option> optionSet, ACTIVE active) {
+
+    public Model() {
+    }
+
+    public Model(Long id, String name, Double price, Double priceuzs, String producername, String imagepath, String description, String descriptionuz, Producer producer, Section section, Set<Option> optionSet, ACTIVE active) {
         this.id = id;
         this.name = name;
         this.price = price;
+        this.priceuzs = priceuzs;
         this.producername = producername;
         this.imagepath = imagepath;
         this.description = description;
@@ -59,9 +66,6 @@ public class Model {
         this.section = section;
         this.optionSet = optionSet;
         this.active = active;
-    }
-
-    public Model() {
     }
 
     public String getName() {
@@ -150,5 +154,13 @@ public class Model {
 
     public void setDescriptionuz(String descriptionuz) {
         this.descriptionuz = descriptionuz;
+    }
+
+    public Double getPriceuzs() {
+        return priceuzs;
+    }
+
+    public void setPriceuzs(Double priceuzs) {
+        this.priceuzs = priceuzs;
     }
 }
