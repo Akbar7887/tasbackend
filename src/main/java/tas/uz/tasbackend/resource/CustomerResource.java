@@ -23,7 +23,7 @@ public class CustomerResource {
 
     @PostMapping("customeradd")
     private ResponseEntity<Customer> add(@RequestBody Customer customer, @RequestParam("model_id") String id) {
-        return ResponseEntity.ok().body(customerService.add(customer, id));
+        return ResponseEntity.ok().body(customerService.add(customer));
     }
 
 }

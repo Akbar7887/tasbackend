@@ -23,7 +23,7 @@ public class CustomerService {
         return customerRepo.getAllActive(ACTIVE.ACTIVE);
     }
 
-    public Customer add(Customer customer, String model_id){
+    public Customer add(Customer customer){
 
         Customer findCustomer = customerRepo.findByPhone(customer.getPhone());
         if (findCustomer != null){
@@ -31,10 +31,6 @@ public class CustomerService {
                 findCustomer.addCustomerOrder(cus);
             }
             return customerRepo.save(findCustomer);
-        }
-        Model model = modelService.getbyid(Long.parseLong(model_id));
-        if(model != null){
-            customer.setModel(model);
         }
         return customerRepo.save(customer);
 
