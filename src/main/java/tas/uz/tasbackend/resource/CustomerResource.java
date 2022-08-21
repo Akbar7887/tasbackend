@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/")
+@RequestMapping("/custom/")
 public class CustomerResource {
 
     final CustomerService customerService;
@@ -22,7 +22,7 @@ public class CustomerResource {
     }
 
     @PostMapping("customeradd")
-    private ResponseEntity<Customer> add(@RequestBody Customer customer, @RequestParam("model_id") String id) {
+    private ResponseEntity<Customer> add(@RequestBody Customer customer) {
         return ResponseEntity.ok().body(customerService.add(customer));
     }
 

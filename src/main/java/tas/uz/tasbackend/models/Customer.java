@@ -1,13 +1,12 @@
 package tas.uz.tasbackend.models;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 
 @Entity
 @Table
-public class Customer {
+public class Customer implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,15 +21,7 @@ public class Customer {
     @Column(name = "email")
     private String email;
 
-//    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-//    @JoinColumn(name = "model_id", referencedColumnName = "id")
-//    private Model model;
 
-    @OneToMany(mappedBy = "customer",
-            fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL)
-    @JsonManagedReference
-    private Set<CustomerOrder> customerOrders;
 
     public Customer() {
     }
@@ -40,23 +31,21 @@ public class Customer {
         this.name = name;
         this.phone = phone;
         this.email = email;
-
-        this.customerOrders = customerOrders;
     }
 
-    public void addCustomerOrder(CustomerOrder customerOrder) {
-        if (!this.customerOrders.contains(customerOrder)) {
-            this.customerOrders.add(customerOrder);
-            customerOrder.setCustomer(this);
-        }
-    }
-
-    public void removeCustomerOrder(CustomerOrder customerOrder) {
-        if (this.customerOrders.contains(customerOrder)) {
-            this.customerOrders.remove(customerOrder);
-            customerOrder.setCustomer(null);
-        }
-    }
+//    public void addCustomerOrder(CustomerOrder customerOrder) {
+//        if (!this.customerOrders.contains(customerOrder)) {
+//            this.customerOrders.add(customerOrder);
+//            customerOrder.setCustomer(this);
+//        }
+//    }
+//
+//    public void removeCustomerOrder(CustomerOrder customerOrder) {
+//        if (this.customerOrders.contains(customerOrder)) {
+//            this.customerOrders.remove(customerOrder);
+//            customerOrder.setCustomer(null);
+//        }
+//    }
 
     public Long getId() {
         return id;
@@ -90,13 +79,14 @@ public class Customer {
         this.email = email;
     }
 
-    public Set<CustomerOrder> getCustomerOrders() {
-        return customerOrders;
-    }
-
-    public void setCustomerOrders(Set<CustomerOrder> customerOrders) {
-        this.customerOrders = customerOrders;
-    }
+//    @JsonIgnore
+//    public Set<CustomerOrder> getCustomerOrders() {
+//        return customerOrders;
+//    }
+//
+//    public void setCustomerOrders(Set<CustomerOrder> customerOrders) {
+//        this.customerOrders = customerOrders;
+//    }
 
 
 }

@@ -12,6 +12,6 @@ import java.util.List;
 @Repository
 public interface CustomerOrderRepo extends JpaRepository<CustomerOrder, Long> {
 
-    @Query("select p from Producer p where p.active = :active")
-    List<CustomerOrder> getAllActive(ACTIVE active);
+//    @Query("select c from customer_order c where c.active = :active")
+//    List<CustomerOrder> getAllActive(ACTIVE active);
 }

@@ -14,6 +14,6 @@ public interface CustomerRepo extends JpaRepository<Customer, Long> {
 
     Customer findByPhone(String phone);
 
-    @Query("select p from Producer p where p.active = :active")
-    List<Customer> getAllActive(ACTIVE active);
+//    @Query("select p from Customer p where p.active = :active")
+//    List<Customer> getAllActive(ACTIVE active);
 }

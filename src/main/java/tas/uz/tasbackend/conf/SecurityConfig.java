@@ -39,10 +39,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authorizeRequests().antMatchers("/login/token/refresh/**" ).permitAll();
         http.authorizeRequests().antMatchers(GET,"/api/**").permitAll();
-        http.authorizeRequests().antMatchers(POST,"/api/customeradd").permitAll();
-
-//        http.authorizeRequests().antMatchers(GET, "/login/users/**").hasAnyAuthority("ADMIN", "SUPER_ADMIN");
-//        http.authorizeRequests().antMatchers(GET, "/api/**").hasAnyAuthority("USER", "ADMIN", "MENEGER");
+        http.authorizeRequests().antMatchers(POST,"/custom/customeradd", "/custom/customerorderadd").permitAll();
+        http.authorizeRequests().antMatchers(GET,"/custom/customerget", "/custom/customerorderpost").hasAnyAuthority("ADMIN", "MENEGER");
         http.authorizeRequests().antMatchers(POST, "/api/**").hasAnyAuthority( "ADMIN", "MENEGER");
         http.authorizeRequests().antMatchers(PUT, "/api/**").hasAnyAuthority("ADMIN", "MENEGER");
         http.authorizeRequests().antMatchers(DELETE, "/api/**").hasAnyAuthority("ADMIN", "MENEGER");

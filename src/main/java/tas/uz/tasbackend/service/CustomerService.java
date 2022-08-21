@@ -9,29 +9,32 @@ import tas.uz.tasbackend.models.CustomerOrder;
 import tas.uz.tasbackend.models.Model;
 import tas.uz.tasbackend.repository.CustomerRepo;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class CustomerService {
+public class CustomerService implements Serializable {
+
 
     @Autowired
     final CustomerRepo customerRepo;
     final ModelService modelService;
 
     public List<Customer> getAll(){
-        return customerRepo.getAllActive(ACTIVE.ACTIVE);
+        return customerRepo.findAll();
     }
 
     public Customer add(Customer customer){
 
         Customer findCustomer = customerRepo.findByPhone(customer.getPhone());
-        if (findCustomer != null){
-            for (CustomerOrder cus : customer.getCustomerOrders()){
-                findCustomer.addCustomerOrder(cus);
-            }
-            return customerRepo.save(findCustomer);
+        if(findCustomer == null){
+            findCustomer = new Customer();
         }
+        findCustomer.setEmail(customer.getEmail());
+        findCustomer.setName(customer.getName());
+        findCustomer.setPhone(customer.getPhone());
+
         return customerRepo.save(customer);
 
     }

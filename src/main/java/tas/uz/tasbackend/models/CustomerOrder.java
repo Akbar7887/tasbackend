@@ -1,6 +1,9 @@
 package tas.uz.tasbackend.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -16,11 +19,12 @@ public class CustomerOrder {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "model_id", referencedColumnName = "id")
+    @JsonIgnoreProperties(value = {"applications", "hibernateLazyInitializer"})
     private Model model;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
-    @JsonBackReference
+    @JsonIgnoreProperties(value = {"applications", "hibernateLazyInitializer"})
     private Customer customer;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -28,21 +32,21 @@ public class CustomerOrder {
     @CreationTimestamp
     private Date currentdate;
 
+    @Column(name = "description")
+    private String description;
+
     @Enumerated(EnumType.STRING)
     private ACTIVE active = ACTIVE.ACTIVE;
 
     public CustomerOrder() {
     }
 
-    public CustomerOrder(Long id,
-                         Model model,
-                         Customer customer,
-                         Date currentdate,
-                         ACTIVE active) {
+    public CustomerOrder(Long id, Model model, Customer customer, Date currentdate, String description, ACTIVE active) {
         this.id = id;
         this.model = model;
         this.customer = customer;
         this.currentdate = currentdate;
+        this.description = description;
         this.active = active;
     }
 
@@ -61,6 +65,7 @@ public class CustomerOrder {
     public void setModel(Model model) {
         this.model = model;
     }
+
 
     public Customer getCustomer() {
         return customer;
@@ -86,5 +91,11 @@ public class CustomerOrder {
         this.active = active;
     }
 
+    public String getDescription() {
+        return description;
+    }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }
