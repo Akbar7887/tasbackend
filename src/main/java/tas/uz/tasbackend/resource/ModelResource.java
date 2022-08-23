@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import tas.uz.tasbackend.models.Model;
+import tas.uz.tasbackend.models.Option;
 import tas.uz.tasbackend.models.Producer;
 import tas.uz.tasbackend.service.ModelService;
 import tas.uz.tasbackend.service.fileupload.FileService;
@@ -36,6 +37,11 @@ public class ModelResource {
     @PostMapping("modeladd")
     private ResponseEntity<Model> add(@RequestBody Model model, @RequestParam("id") String id){
         return ResponseEntity.ok().body(modelService.add(model, id));
+    }
+
+    @PostMapping("modeloption")
+    private ResponseEntity<Model> add(@RequestBody Option option, @RequestParam("model_id") String id){
+        return ResponseEntity.ok().body(modelService.modeloption(option, id));
     }
 
     @PostMapping("modelcreate")
@@ -81,4 +87,6 @@ public class ModelResource {
 
         return ResponseEntity.ok(fileService.storeFile(multipartFile, filename, "models"));
     }
+
+
 }

@@ -69,6 +69,18 @@ public class Model {
         this.active = active;
     }
 
+    public void addOption(Option option){
+        if (!this.optionSet.contains(option)){
+            this.optionSet.add(option);
+        }
+    }
+
+    public void removeOption(Option option){
+        if (this.optionSet.contains(option)){
+            this.optionSet.remove(option);
+        }
+    }
+
     public String getName() {
         return name;
     }

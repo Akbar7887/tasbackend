@@ -3,15 +3,14 @@ package tas.uz.tasbackend.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tas.uz.tasbackend.models.ACTIVE;
-import tas.uz.tasbackend.models.Model;
-import tas.uz.tasbackend.models.Producer;
-import tas.uz.tasbackend.models.Rate;
+import tas.uz.tasbackend.models.*;
 import tas.uz.tasbackend.repository.ModelRepo;
+import tas.uz.tasbackend.repository.OptionRepo;
 import tas.uz.tasbackend.repository.RateRepo;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -22,6 +21,7 @@ public class ModelService {
     final ModelRepo modelRepo;
     final ProducerService producerService;
     final RateRepo rateRepo;
+    final OptionRepo optionRepo;
 
     public Model add(Model model, String id) {
 
@@ -31,7 +31,7 @@ public class ModelService {
         producer.addModel(model);
         producerService.add(producer);
         Rate rate = rateRepo.getMaxDate();
-        if (rate != null && model.getPrice() != null){
+        if (rate != null && model.getPrice() != null) {
             double res = model.getPrice() * rate.getCourse();
             model.setPriceuzs(res);
         }
@@ -40,7 +40,7 @@ public class ModelService {
 
     public Model create(Model model) {
         Rate rate = rateRepo.getMaxDate();
-        if (rate != null && model.getPrice() != null){
+        if (rate != null && model.getPrice() != null) {
             double res = model.getPrice() * rate.getCourse();
             model.setPriceuzs(res);
         }
@@ -55,8 +55,6 @@ public class ModelService {
         return modelRepo.save(model);
     }
 
-
-
     public List<Model> getall() {
         return modelRepo.getAllModels(ACTIVE.ACTIVE);
     }
@@ -65,5 +63,15 @@ public class ModelService {
         return modelRepo.getById(id);
     }
 
+    public Model modeloption(Option option, String id) {
+        Optional<Model> model = modelRepo.findById(Long.parseLong(id));
+        Model model1;
+
+        model1 = model.get();
+        Option option1 =  optionRepo.save(option);
+
+        model1.addOption(option1);
+        return modelRepo.save(model1);
+    }
 
 }
