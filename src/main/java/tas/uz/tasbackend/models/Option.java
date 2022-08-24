@@ -11,10 +11,10 @@ public class Option {
     private  Long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "optionconstant_id", referencedColumnName = "id", unique = true)
+    @JoinColumn(name = "optionconstant_id", referencedColumnName = "id")
     private OptionConstant optionConstant;
 
-
+    @Column(nullable = false)
     private String optionname;
 
     @Enumerated(EnumType.STRING)

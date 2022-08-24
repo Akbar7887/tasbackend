@@ -3,6 +3,7 @@ package tas.uz.tasbackend.models;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -44,7 +45,7 @@ public class Model {
     @JoinTable(name = "model_option",
             joinColumns = @JoinColumn(name = "model_id"),
             inverseJoinColumns = @JoinColumn(name = "option_id"), foreignKey = @ForeignKey(name = "model_option_fk"))
-    private Set<Option> optionSet;
+    private List<Option> optionSet;
 
 
     @Enumerated(EnumType.STRING)
@@ -54,7 +55,7 @@ public class Model {
     public Model() {
     }
 
-    public Model(Long id, String name, Double price, Double priceuzs, String producername, String imagepath, String description, String descriptionuz, Producer producer, Section section, Set<Option> optionSet, ACTIVE active) {
+    public Model(Long id, String name, Double price, Double priceuzs, String producername, String imagepath, String description, String descriptionuz, Producer producer, Section section, List<Option> optionSet, ACTIVE active) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -145,11 +146,11 @@ public class Model {
         this.description = description;
     }
 
-    public Set<Option> getOptionSet() {
+    public List<Option> getOptionSet() {
         return optionSet;
     }
 
-    public void setOptionSet(Set<Option> optionSet) {
+    public void setOptionSet(List<Option> optionSet) {
         this.optionSet = optionSet;
     }
 

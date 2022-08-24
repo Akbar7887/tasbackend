@@ -11,6 +11,7 @@ import tas.uz.tasbackend.repository.OptionRepo;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -31,8 +32,9 @@ public class OptionService {
     }
 
     public Option remove(String id){
-        Option option = optionRepo.getById(Long.parseLong(id));
-        option.setActive(ACTIVE.NOACTIVE);
-        return optionRepo.save(option);
+        Optional<Option> option = optionRepo.findById(Long.parseLong(id));
+        Option option1 = option.get();
+        option1.setActive(ACTIVE.NOACTIVE);
+        return optionRepo.save(option1);
     }
 }

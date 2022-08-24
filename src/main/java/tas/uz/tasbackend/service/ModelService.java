@@ -68,6 +68,7 @@ public class ModelService {
         Model model1;
 
         model1 = model.get();
+        option.setActive(ACTIVE.ACTIVE);
         Option option1 =  optionRepo.save(option);
 
         model1.addOption(option1);
