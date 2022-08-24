@@ -3,6 +3,7 @@ package tas.uz.tasbackend.models;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -70,14 +71,14 @@ public class Model {
         this.active = active;
     }
 
-    public void addOption(Option option){
-        if (!this.optionSet.contains(option)){
+    public void addOption(Option option) {
+        if (!this.optionSet.contains(option)) {
             this.optionSet.add(option);
         }
     }
 
-    public void removeOption(Option option){
-        if (this.optionSet.contains(option)){
+    public void removeOption(Option option) {
+        if (this.optionSet.contains(option)) {
             this.optionSet.remove(option);
         }
     }
@@ -147,6 +148,13 @@ public class Model {
     }
 
     public List<Option> getOptionSet() {
+        List<Option> removelist = new ArrayList<Option>();
+        for (Option option : optionSet) {
+            if (option.getActive() == ACTIVE.NOACTIVE) {
+                removelist.add(option);
+            }
+        }
+        optionSet.removeAll(removelist);
         return optionSet;
     }
 

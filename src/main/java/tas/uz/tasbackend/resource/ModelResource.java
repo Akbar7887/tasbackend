@@ -31,7 +31,9 @@ public class ModelResource {
 
     @GetMapping("modelget")
     private ResponseEntity<List<Model>> getall(){
-        return ResponseEntity.ok().body(modelService.getall());
+        return ResponseEntity.ok().body(
+                modelService.getall()
+        );
     }
 
     @PostMapping("modeladd")

@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface ModelRepo extends JpaRepository<Model, Long> {
 
-    @Query("select p from Model p where p.active = :active")
+    @Query("select m from Model m where  m.active = :active")
     List<Model> getAllModels(ACTIVE active);
 }

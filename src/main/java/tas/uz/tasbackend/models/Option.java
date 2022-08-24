@@ -8,7 +8,7 @@ public class Option {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long id;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "optionconstant_id", referencedColumnName = "id")
@@ -55,7 +55,8 @@ public class Option {
     }
 
     public ACTIVE getActive() {
-        return active;
+
+            return active;
     }
 
     public void setActive(ACTIVE active) {
