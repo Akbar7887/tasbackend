@@ -15,7 +15,14 @@ public class News {
 
     private String title;
 
+    private String titleuz;
+
+    @Column(columnDefinition = "TEXT")
     private String description;
+
+    @Column(columnDefinition = "TEXT", name = "descriptionuz")
+    private String descriptionuz;
+
 
     private String imagepath;
 
@@ -30,10 +37,12 @@ public class News {
     public News() {
     }
 
-    public News(Long id, String title, String description, String imagepath, Date date, ACTIVE active) {
+    public News(Long id, String title, String titleuz, String description, String descriptionuz, String imagepath, Date date, ACTIVE active) {
         this.id = id;
         this.title = title;
+        this.titleuz = titleuz;
         this.description = description;
+        this.descriptionuz = descriptionuz;
         this.imagepath = imagepath;
         this.date = date;
         this.active = active;
@@ -85,5 +94,21 @@ public class News {
 
     public void setActive(ACTIVE active) {
         this.active = active;
+    }
+
+    public String getDescriptionuz() {
+        return descriptionuz;
+    }
+
+    public void setDescriptionuz(String descriptionuz) {
+        this.descriptionuz = descriptionuz;
+    }
+
+    public String getTitleuz() {
+        return titleuz;
+    }
+
+    public void setTitleuz(String titleuz) {
+        this.titleuz = titleuz;
     }
 }
