@@ -10,10 +10,10 @@ public class OptionConstant {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)
+//    @Column(unique = true)
     private String namerus;
 
-    @Column(unique = true)
+//    @Column(unique = true)
     private String nameuz;
 
     @Enumerated(EnumType.STRING)

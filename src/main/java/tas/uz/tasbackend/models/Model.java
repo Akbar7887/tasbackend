@@ -15,7 +15,7 @@ public class Model {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)
+//    @Column(unique = true)
     private String name;
 
     private Double price;
