@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import tas.uz.tasbackend.models.Model;
 import tas.uz.tasbackend.models.Option;
-import tas.uz.tasbackend.models.Producer;
 import tas.uz.tasbackend.service.ModelService;
 import tas.uz.tasbackend.service.fileupload.FileService;
 
@@ -52,7 +51,7 @@ public class ModelResource {
     }
 
     @PostMapping("removemodel")
-    private ResponseEntity<Model> add(@RequestParam("id") String id){
+    private ResponseEntity<Model> add(@RequestParam("id") String id) throws IOException {
         return ResponseEntity.ok().body(modelService.remove(id));
     }
 

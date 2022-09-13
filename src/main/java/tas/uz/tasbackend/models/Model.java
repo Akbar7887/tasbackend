@@ -46,7 +46,7 @@ public class Model {
     @JoinTable(name = "model_option",
             joinColumns = @JoinColumn(name = "model_id"),
             inverseJoinColumns = @JoinColumn(name = "option_id"), foreignKey = @ForeignKey(name = "model_option_fk"))
-    private List<Option> optionSet;
+    private List<Option> optionSet = new ArrayList<>();
 
 
     @Enumerated(EnumType.STRING)

@@ -2,13 +2,17 @@ package tas.uz.tasbackend.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import tas.uz.tasbackend.models.*;
 import tas.uz.tasbackend.repository.ModelRepo;
 import tas.uz.tasbackend.repository.OptionRepo;
 import tas.uz.tasbackend.repository.RateRepo;
+import tas.uz.tasbackend.service.fileupload.FileService;
 
 import javax.transaction.Transactional;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +26,8 @@ public class ModelService {
     final ProducerService producerService;
     final RateRepo rateRepo;
     final OptionRepo optionRepo;
+    final FileService fileService;
+
 
     public Model add(Model model, String id) {
 
@@ -48,10 +54,15 @@ public class ModelService {
     }
 
 
-    public Model remove(String id) {
+    public Model remove(String id) throws IOException {
 
         Model model = modelRepo.getById(Long.parseLong(id));
         model.setActive(ACTIVE.NOACTIVE);
+        Resource fileResource = fileService.getFile(model.getImagepath(), "models");
+        File file = fileResource.getFile();
+        file.delete();
+        model.getOptionSet().clear();
+
         return modelRepo.save(model);
     }
 
