@@ -20,8 +20,10 @@ public class CorsConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.addAllowedOrigin("https://admin.tascom.uz:8083");
+        config.addAllowedOrigin("https://admin.tascom.uz:9095");
         config.addAllowedOrigin("https://tascom.uz");
+        config.addAllowedOrigin("https://localhost:8083");
+        config.addAllowedOrigin("http://localhost:8083");
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
         source.registerCorsConfiguration("/**", config);
