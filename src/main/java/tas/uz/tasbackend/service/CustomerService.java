@@ -27,7 +27,7 @@ public class CustomerService implements Serializable {
 
     public Customer add(Customer customer){
 
-        Customer findCustomer = customerRepo.findByPhone(customer.getPhone());
+        Customer findCustomer = customerRepo.findPhone(customer.getPhone());
         if(findCustomer == null){
             findCustomer = new Customer();
         }
@@ -35,7 +35,7 @@ public class CustomerService implements Serializable {
         findCustomer.setName(customer.getName());
         findCustomer.setPhone(customer.getPhone());
 
-        return customerRepo.save(customer);
+        return customerRepo.save(findCustomer);
 
     }
 }

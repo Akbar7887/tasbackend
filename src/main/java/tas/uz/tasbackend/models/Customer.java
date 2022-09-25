@@ -15,7 +15,7 @@ public class Customer implements Serializable {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String phone;
 
     @Column(name = "email")
@@ -90,3 +90,4 @@ public class Customer implements Serializable {
 
 
 }
+
