@@ -14,7 +14,6 @@ public class Option {
     @JoinColumn(name = "optionconstant_id", referencedColumnName = "id")
     private OptionConstant optionConstant;
 
-    @Column(nullable = false)
     private String optionname;
 
     @Enumerated(EnumType.STRING)
