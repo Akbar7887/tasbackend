@@ -1,0 +1,54 @@
+version: "3.1"
+
+services:
+  app:
+    container_name: tasbackend_jar
+    image: tasbackend
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - postgressqldb
+    ports:
+      - 8089:8089
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgressqldb:5432/tas
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 123
+      SPRING_DATASOURCE_DB: tas
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    networks:
+      - tasbackend
+    volumes:
+      - uploadstas:/var/lib/uploadstas
+  postgressqldb:
+    container_name: postgres
+    image: postgres:14-alpine
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: tas
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123
+    networks:
+      - tasbackend
+    volumes:
+      - postgres_db:/var/lib/postgresql/data
+  adminer:
+    image: adminer
+    restart: always
+    networks:
+      - tasbackend
+    ports:
+      - 8085:8080
+
+volumes:
+  postgres_db:
+  uploadstas:
+    external: true
+
+networks:
+  tasbackend:
+    driver: bridge
