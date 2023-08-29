@@ -40,7 +40,7 @@ public class SectionResource {
     }
 
     @GetMapping("download/section/{filename:.+}")
-    public ResponseEntity<?> downloadFile(@PathVariable("filename") String filename, HttpServletRequest request) {
+    public ResponseEntity<?> downloadFile(@PathVariable("filename") String filename, HttpServletRequest request) throws IOException{
         Resource fileResource = fileService.getFile(filename, "section");
 
         String contentType = null;
