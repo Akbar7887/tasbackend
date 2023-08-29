@@ -33,7 +33,8 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
         if (request.getServletPath().equals("/login")
-                || request.getServletPath().equals("/login/token/refresh") || request.getServletPath().equals("/login/role/save")
+                || request.getServletPath().equals("/login/token/refresh")
+                || request.getServletPath().equals("/login/role/save")
                 || request.getServletPath().equals("/login/user/save")
                 || request.getServletPath().equals("/login/role/addtouser")) {
 

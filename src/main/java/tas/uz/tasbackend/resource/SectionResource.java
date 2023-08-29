@@ -62,7 +62,7 @@ public class SectionResource {
 
     @PostMapping("sectionupload")
     public ResponseEntity<?> uploadFile(@RequestParam("file") MultipartFile multipartFile,
-                                        @RequestParam String id) throws IOException {
+                                        @RequestParam("id") String id) throws IOException {
         String filetype = multipartFile.getOriginalFilename();
         String filename = id + "." + filetype.substring(filetype.lastIndexOf(".") +1);
 
@@ -70,6 +70,11 @@ public class SectionResource {
         section.setImagepath(filename);
         sectionService.add(section);
 
-        return ResponseEntity.ok(fileService.storeFile(multipartFile, filename, "section"));
+        return ResponseEntity.ok(fileService.storeFile(multipartFile, section.getImagepath(), "section"));
+    }
+
+    @DeleteMapping("delete")
+    public void delete(@RequestParam("id") String id){
+        sectionService.delete(Long.parseLong(id));
     }
 }

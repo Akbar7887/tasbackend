@@ -27,4 +27,8 @@ public class SectionService {
     public Section getbyid(Long id){
         return sectionRepo.getById(id);
     }
+
+    public void delete(Long id){
+        sectionRepo.deleteById(id);
+    }
 }
